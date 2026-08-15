@@ -8,7 +8,7 @@ output "appstream_stacks_access_endpoints" {
 }
 output "appstream_stacks_application_settings" {
   description = "Map of application_settings values across all appstream_stacks, keyed the same as var.appstream_stacks"
-  value       = { for k, v in aws_appstream_stack.appstream_stacks : k => v.application_settings if v.application_settings != null && length(v.application_settings) > 0 }
+  value       = { for k, v in aws_appstream_stack.appstream_stacks : k => one(v.application_settings) if v.application_settings != null && length(v.application_settings) > 0 }
 }
 output "appstream_stacks_arn" {
   description = "Map of arn values across all appstream_stacks, keyed the same as var.appstream_stacks"
@@ -52,7 +52,7 @@ output "appstream_stacks_storage_connectors" {
 }
 output "appstream_stacks_streaming_experience_settings" {
   description = "Map of streaming_experience_settings values across all appstream_stacks, keyed the same as var.appstream_stacks"
-  value       = { for k, v in aws_appstream_stack.appstream_stacks : k => v.streaming_experience_settings if v.streaming_experience_settings != null && length(v.streaming_experience_settings) > 0 }
+  value       = { for k, v in aws_appstream_stack.appstream_stacks : k => one(v.streaming_experience_settings) if v.streaming_experience_settings != null && length(v.streaming_experience_settings) > 0 }
 }
 output "appstream_stacks_tags" {
   description = "Map of tags values across all appstream_stacks, keyed the same as var.appstream_stacks"
